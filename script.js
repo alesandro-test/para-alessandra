@@ -250,21 +250,44 @@ document.addEventListener("DOMContentLoaded", () => {
         heart.classList.add("floating-heart");
         heart.textContent = "♥";
 
+
+        // Posición horizontal
         heart.style.left =
             Math.random() * 100 + "vw";
 
-        heart.style.fontSize =
-            12 + Math.random() * 20 + "px";
 
+        // Tamaño
+        heart.style.fontSize =
+            10 + Math.random() * 18 + "px";
+
+
+        // Velocidad
         heart.style.animationDuration =
-            7 + Math.random() * 7 + "s";
+            10 + Math.random() * 8 + "s";
+
+
+        // Pequeña variación de tonos
+        const colors = [
+            "rgba(165, 42, 68, 0.24)",
+            "rgba(183, 41, 69, 0.20)",
+            "rgba(111, 23, 43, 0.25)",
+            "rgba(210, 72, 101, 0.16)"
+        ];
+
+        heart.style.color =
+            colors[
+                Math.floor(
+                    Math.random() * colors.length
+                )
+            ];
+
 
         container.appendChild(heart);
 
+
         setTimeout(() => {
             heart.remove();
-        }, 15000);
-
+        }, 16000);
     }
     
 /* -----------------------------
@@ -607,8 +630,8 @@ nextQuestionButton.addEventListener("click", () => {
         threadObserver.observe(threadEnding);
 
     }
-    setInterval(createHeart, 900);
-
+    setInterval(createHeart, 350);
+    
 /* -----------------------------
    FINAL DE LA CARTA
 ----------------------------- */
