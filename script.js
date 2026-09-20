@@ -131,8 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     backgroundMusic.volume = 0.35;
 
-    loadTrack(currentTrack);
-
     const yesButton =
     document.getElementById("yesButton");
 
@@ -151,6 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         welcomeScreen.classList.add("opening");
 
+        musicPlayer.classList.remove("hidden");
+
+        loadTrack(currentTrack);
         playCurrentTrack();
 
         setTimeout(() => {
@@ -158,8 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
             welcomeScreen.classList.add("hidden");
 
             giftContent.classList.remove("hidden");
-
-            musicPlayer.classList.remove("hidden");
 
         }, 900);
 
