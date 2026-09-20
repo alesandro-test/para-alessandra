@@ -11,10 +11,112 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const backgroundMusic =
         document.getElementById("backgroundMusic");
-        backgroundMusic.volume = 0.35;
 
-    const musicButton =
-        document.getElementById("musicButton");
+    const musicPlayer =
+        document.getElementById("musicPlayer");
+
+    const musicTitle =
+        document.getElementById("musicTitle");
+
+    const musicArtist =
+        document.getElementById("musicArtist");
+
+    const playPauseButton =
+        document.getElementById("playPauseButton");
+
+    const prevSongButton =
+        document.getElementById("prevSongButton");
+
+    const nextSongButton =
+        document.getElementById("nextSongButton");
+
+    const playlist = [
+        {
+            title: "Mi Bello Ángel",
+            artist: "Natanael Cano",
+            file: "assets/music/mi-bello-angel.mp3"
+        },
+        {
+            title: "Until I Found You",
+            artist: "Stephen Sanchez",
+            file: "assets/music/until-i-found-you.mp3"
+        },
+        {
+            title: "Bajo el Agua",
+            artist: "Manuel Medrano",
+            file: "assets/music/bajo-el-agua.mp3"
+        }
+    ];
+
+        function loadTrack(index) {
+
+        const track = playlist[index];
+
+        backgroundMusic.src = track.file;
+
+        musicTitle.textContent = track.title;
+        musicArtist.textContent = track.artist;
+
+        backgroundMusic.load();
+    }
+
+
+    function updatePlayButton() {
+
+        if (backgroundMusic.paused) {
+            playPauseButton.textContent = "▶";
+        } else {
+            playPauseButton.textContent = "❚❚";
+        }
+
+    }
+
+
+    function playCurrentTrack() {
+
+        backgroundMusic
+            .play()
+            .then(() => {
+                updatePlayButton();
+            })
+            .catch(() => {
+                console.log("El navegador bloqueó la reproducción.");
+            });
+
+    }
+
+
+    function nextTrack() {
+
+        currentTrack++;
+
+        if (currentTrack >= playlist.length) {
+            currentTrack = 0;
+        }
+
+        loadTrack(currentTrack);
+        playCurrentTrack();
+    }
+
+
+    function previousTrack() {
+
+        currentTrack--;
+
+        if (currentTrack < 0) {
+            currentTrack = playlist.length - 1;
+        }
+
+        loadTrack(currentTrack);
+        playCurrentTrack();
+    }
+
+
+    let currentTrack = 0;
+
+    backgroundMusic.volume = 0.35;
+
+    loadTrack(currentTrack);
 
     const yesButton =
     document.getElementById("yesButton");
@@ -34,13 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         welcomeScreen.classList.add("opening");
 
-        if (backgroundMusic.querySelector("source")) {
-
-            backgroundMusic.play().catch(() => {
-                console.log("La música todavía no está disponible.");
-            });
-
-        }
+        playCurrentTrack();
 
         setTimeout(() => {
 
@@ -48,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             giftContent.classList.remove("hidden");
 
-            musicButton.classList.remove("hidden");
+            musicPlayer.classList.remove("hidden");
 
         }, 900);
 
@@ -56,25 +152,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* -----------------------------
-       CONTROL DE MÚSICA
+    CONTROL DE MÚSICA
     ----------------------------- */
 
-    musicButton.addEventListener("click", () => {
+    playPauseButton.addEventListener("click", () => {
 
         if (backgroundMusic.paused) {
 
-            backgroundMusic.play();
-            musicButton.textContent = "♪";
+            playCurrentTrack();
 
         } else {
 
             backgroundMusic.pause();
-            musicButton.textContent = "×";
+            updatePlayButton();
 
         }
 
     });
 
+
+    nextSongButton.addEventListener(
+        "click",
+        nextTrack
+    );
+
+
+    prevSongButton.addEventListener(
+        "click",
+        previousTrack
+    );
+
+
+    backgroundMusic.addEventListener(
+        "ended",
+        nextTrack
+    );
 
     /* -----------------------------
        BOTÓN CONTINUAR

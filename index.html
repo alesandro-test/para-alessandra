@@ -456,16 +456,53 @@
 </main>
 
 <!-- Música -->
-<audio id="backgroundMusic" loop>
-    <source
-        src="assets/music/nuestra-cancion.mp3"
-        type="audio/mpeg"
-    >
-</audio>
+<audio id="backgroundMusic"></audio>
 
-<button id="musicButton" class="music-button hidden">
-    ♪
-</button>
+<div id="musicPlayer" class="music-player hidden">
+
+    <div class="music-icon">
+        ♪
+    </div>
+
+    <div class="music-info">
+        <span id="musicTitle" class="music-title">
+            Amor
+        </span>
+
+        <span id="musicArtist" class="music-artist">
+            Emanuel Cortes
+        </span>
+    </div>
+
+    <div class="music-controls">
+
+        <button
+            id="prevSongButton"
+            class="music-control-button"
+            aria-label="Canción anterior"
+        >
+            ‹
+        </button>
+
+        <button
+            id="playPauseButton"
+            class="music-control-button play-button"
+            aria-label="Reproducir o pausar"
+        >
+            ▶
+        </button>
+
+        <button
+            id="nextSongButton"
+            class="music-control-button"
+            aria-label="Siguiente canción"
+        >
+            ›
+        </button>
+
+    </div>
+
+</div>
 
 <script src="script.js"></script>
 
