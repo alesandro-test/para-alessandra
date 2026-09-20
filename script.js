@@ -11,9 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const backgroundMusic =
         document.getElementById("backgroundMusic");
+        backgroundMusic.volume = 0.35;
 
     const musicButton =
         document.getElementById("musicButton");
+
+    const yesButton =
+    document.getElementById("yesButton");
+
+    const letterContent =
+        document.getElementById("letterContent");
+
+    const finalAnswer =
+        document.getElementById("finalAnswer");
 
 
     /* -----------------------------
@@ -134,6 +144,9 @@ const memoriesButton =
 const quizScreen =
     document.getElementById("quizScreen");
 
+const galleryScreen =
+    document.getElementById("galleryScreen");
+
 const quizIntro =
     document.getElementById("quizIntro");
 
@@ -219,6 +232,9 @@ const questions = [
     {
         title: "Recuerdo 01",
 
+        image:
+            "assets/images/quiz/lobos.jpg",
+
         question:
             "¿Cuándo hicimos nuestro carnet para la licencia de lobos domesticados? 🐺",
 
@@ -239,6 +255,9 @@ const questions = [
 
     {
         title: "Recuerdo 02",
+
+        image:
+            "assets/images/quiz/dibujo.jpg",
 
         question:
             "¿En qué mes hice este dibujo para ti? 🎨",
@@ -261,6 +280,9 @@ const questions = [
     {
         title: "Recuerdo 03",
 
+        image:
+            "assets/images/quiz/gta.jpg",
+
         question:
             "¿Cuándo nos tomamos aquella foto juntos en GTA? 🎮",
 
@@ -278,9 +300,7 @@ const questions = [
         success:
             "4 de octubre de 2025 🎮❤️"
     }
-
 ];
-
 
 let currentQuestion = 0;
 let attempts = 0;
@@ -405,21 +425,20 @@ nextQuestionButton.addEventListener("click", () => {
 
     } else {
 
-        questionNumber.textContent =
-            "Completado";
+        questionPage.classList.add("leaving");
 
-        questionText.textContent =
-            "Todavía quedan muchos recuerdos por recorrer juntos. ❤️";
+        setTimeout(() => {
 
-        quizOptions.innerHTML = "";
+            quizScreen.classList.add("hidden");
 
-        quizFeedback.textContent =
-            "Pero antes de terminar, quiero enseñarte algunas cosas que guardo con mucho cariño.";
+            galleryScreen.classList.remove("hidden");
+            galleryScreen.classList.add("entering");
 
-        nextQuestionButton.classList.add("hidden");
+            window.scrollTo(0, 0);
+
+        }, 700);
 
     }
-
 });
 
 /* -----------------------------
@@ -456,5 +475,209 @@ nextQuestionButton.addEventListener("click", () => {
 
     }
     setInterval(createHeart, 900);
+
+/* -----------------------------
+   FINAL DE LA CARTA
+----------------------------- */
+
+function calculateRelationshipTime() {
+
+    const startDate =
+        new Date(2025, 8, 20);
+
+    const today =
+        new Date();
+
+    let years =
+        today.getFullYear() -
+        startDate.getFullYear();
+
+    let months =
+        today.getMonth() -
+        startDate.getMonth();
+
+    let days =
+        today.getDate() -
+        startDate.getDate();
+
+
+    if (days < 0) {
+
+        const daysInPreviousMonth =
+            new Date(
+                today.getFullYear(),
+                today.getMonth(),
+                0
+            ).getDate();
+
+        days += daysInPreviousMonth;
+
+        months--;
+    }
+
+
+    if (months < 0) {
+
+        months += 12;
+
+        years--;
+    }
+
+
+    document.getElementById("yearsCount")
+        .textContent = years;
+
+    document.getElementById("monthsCount")
+        .textContent = months;
+
+    document.getElementById("daysCount")
+        .textContent = days;
+
+
+    document.getElementById("yearsLabel")
+        .textContent =
+            years === 1
+                ? "año"
+                : "años";
+
+    document.getElementById("monthsLabel")
+        .textContent =
+            months === 1
+                ? "mes"
+                : "meses";
+
+    document.getElementById("daysLabel")
+        .textContent =
+            days === 1
+                ? "día"
+                : "días";
+}
+
+
+/* EXPLOSIÓN DE CORAZONES */
+
+function createFinalHearts(button) {
+
+    const rect =
+        button.getBoundingClientRect();
+
+    const centerX =
+        rect.left + rect.width / 2;
+
+    const centerY =
+        rect.top + rect.height / 2;
+
+
+    for (let i = 0; i < 24; i++) {
+
+        const heart =
+            document.createElement("span");
+
+        heart.className =
+            "final-heart-burst";
+
+        heart.textContent = "♥";
+
+
+        const moveX =
+            (Math.random() - 0.5) * 420;
+
+        const moveY =
+            -(120 + Math.random() * 300);
+
+        const rotation =
+            (Math.random() - 0.5) * 120;
+
+        const size =
+            12 + Math.random() * 20;
+
+
+        heart.style.setProperty(
+            "--start-x",
+            `${centerX}px`
+        );
+
+        heart.style.setProperty(
+            "--start-y",
+            `${centerY}px`
+        );
+
+        heart.style.setProperty(
+            "--move-x",
+            `${moveX}px`
+        );
+
+        heart.style.setProperty(
+            "--move-y",
+            `${moveY}px`
+        );
+
+        heart.style.setProperty(
+            "--rotation",
+            `${rotation}deg`
+        );
+
+        heart.style.setProperty(
+            "--heart-size",
+            `${size}px`
+        );
+
+
+        document.body.appendChild(heart);
+
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        }, 1900);
+    }
+}
+
+
+/* BOTÓN "SÍ, QUIERO" */
+
+if (
+    yesButton &&
+    letterContent &&
+    finalAnswer
+) {
+
+    yesButton.addEventListener("click", () => {
+
+        createFinalHearts(yesButton);
+
+        yesButton.textContent = "♥";
+
+        letterContent.classList.add(
+            "accepted"
+        );
+
+
+        setTimeout(() => {
+
+            letterContent.classList.add(
+                "hidden"
+            );
+
+            calculateRelationshipTime();
+
+            finalAnswer.classList.remove(
+                "hidden"
+            );
+
+
+            requestAnimationFrame(() => {
+
+                finalAnswer.classList.add(
+                    "show"
+                );
+
+            });
+
+        }, 750);
+
+    });
+}
 
 });

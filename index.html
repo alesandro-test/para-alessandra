@@ -149,9 +149,11 @@
         </div>
 
         <p class="eyes-final-text">
-            tus ojos hermosos.
+            tus hermosos ojos.
         </p>
-        
+
+        </div>
+
 <!-- BOTÓN PARA ENTRAR AL MINIJUEGO -->
         <button class="memories-button" id="memoriesButton">
             Sigamos con nuestros recuerdos
@@ -209,6 +211,15 @@
             Recuerdo 01
         </p>
 
+        <div class="quiz-image-wrapper">
+            <img
+                id="questionImage"
+                class="quiz-image"
+                src=""
+                alt="Recuerdo"
+            >
+        </div>
+
         <h2
             id="questionText"
             class="quiz-question"
@@ -239,17 +250,224 @@
 
 </main>
 
-    <!-- Música -->
-    <audio id="backgroundMusic" loop>
-        <!-- Después pondremos nuestra canción -->
-    </audio>
+<!-- ======================================
+     GALERÍA FINAL
+======================================= -->
+
+<main id="galleryScreen" class="gallery-screen hidden">
+
+    <section class="gallery-page">
+
+        <p class="section-small-title">
+            Un poquito de ti
+        </p>
+
+        <h2 class="gallery-title">
+            Mis fotos favoritas de ti
+        </h2>
+
+        <p class="gallery-intro">
+            Podría guardar cientos, pero estas siempre consiguen
+            hacerme sonreír cuando las veo. ❤️
+        </p>
+
+        <div class="photo-gallery">
+
+            <div class="gallery-photo">
+                <img src="assets/images/galeria/foto1.jpg" alt="Alessandra">
+            </div>
+
+            <div class="gallery-photo">
+                <img src="assets/images/galeria/foto2.jpg" alt="Alessandra">
+            </div>
+
+            <div class="gallery-photo">
+                <img src="assets/images/galeria/foto3.jpg" alt="Alessandra">
+            </div>
+
+            <div class="gallery-photo">
+                <img src="assets/images/galeria/foto4.jpg" alt="Alessandra">
+            </div>
+
+            <div class="gallery-photo">
+                <img src="assets/images/galeria/foto5.jpg" alt="Alessandra">
+            </div>
+
+            <div class="gallery-photo">
+                <img src="assets/images/galeria/foto6.jpg" alt="Alessandra">
+            </div>
+
+        </div>
+
+        <div class="gallery-ending">
+
+            <span class="gallery-heart">♥</span>
+
+            <p>
+                Podría elegir muchísimas fotos tuyas, pero estas son algunas
+                de las que más me gustan. Cada una tiene algo de ti que adoro
+                y que me hace sonreír cuando la veo.
+            </p>
+
+            <p>
+                Y aunque aquí solo haya unas cuantas, sé que todavía nos quedan
+                muchísimos momentos por vivir juntos.
+            </p>
+
+            <p>
+                Quiero seguir creando recuerdos contigo y, con el tiempo,
+                tener muchas más fotos y muchas más historias que guardar. ❤️
+            </p>
+
+            <h3>
+                Todavía nos queda mucha historia por escribir juntos.
+            </h3>
+
+        </div>
+
+    </section>
+
+<!-- ======================================
+     CARTA FINAL
+======================================= -->
+
+<section class="final-letter">
+
+    <div id="letterContent" class="letter-content">
+
+        <p class="section-small-title">
+            Para ti
+        </p>
+
+        <h2 class="letter-title">
+            Hay algo que todavía quiero decirte...
+        </h2>
+
+        <div class="letter-text">
+
+            <p>
+                Hay cosas que todavía no sé cómo decirte del todo.
+                Cosas que quizá mis ojos llevan tiempo intentando
+                contarte cada vez que te miro, aunque a veces mis
+                palabras no sepan cómo hacerlo.
+            </p>
+
+            <p>
+                Contigo pasó algo diferente. Poco a poco te fuiste
+                haciendo parte de mis pensamientos, de mis días
+                y de tantos momentos que ahora guardo con muchísimo cariño.
+            </p>
+
+            <p>
+                Hoy, viendo todo lo que hemos vivido, me doy cuenta
+                de cuánto agradezco haberte encontrado y de lo bonito
+                que ha sido compartir todo este tiempo contigo.
+            </p>
+
+            <p>
+                Y aunque esta página guarde algunos recuerdos,
+                algunas fotos y pequeños pedacitos de nuestra historia,
+                sé que todavía nos quedan muchísimas cosas por vivir.
+            </p>
+
+            <p>
+                Si llegar hasta aquí ha sido tan bonito, me emociona
+                pensar en todo lo que todavía podemos construir juntos.
+            </p>
+
+            <p class="letter-thanks">
+                Gracias por compartir tu tiempo conmigo,
+                por cada momento y por dejarme ser parte de tu vida. ❤️
+            </p>
+
+        </div>
+
+        <p class="letter-question-intro">
+            Y ahora quiero preguntarte algo...
+        </p>
+
+        <h3 class="letter-question">
+            ¿Te gustaría seguir escribiendo nuestra historia juntos?
+        </h3>
+
+        <button id="yesButton" class="yes-button">
+            Sí, quiero <span>♥</span>
+        </button>
+
+    </div>
 
 
-    <button id="musicButton" class="music-button hidden">
-        ♪
-    </button>
+    <!-- RESULTADO FINAL -->
 
-    <script src="script.js"></script>
+    <div id="finalAnswer" class="final-answer hidden">
+
+        <div class="final-big-heart">
+            ♥
+        </div>
+
+        <p class="section-small-title">
+            Nuestra historia
+        </p>
+
+        <h2>
+            Entonces sigamos contando
+            el tiempo juntos.
+        </h2>
+
+        <div class="relationship-counter">
+
+            <div class="counter-item">
+                <span id="yearsCount">0</span>
+                <small id="yearsLabel">años</small>
+            </div>
+
+            <span class="counter-dot">·</span>
+
+            <div class="counter-item">
+                <span id="monthsCount">0</span>
+                <small id="monthsLabel">meses</small>
+            </div>
+
+            <span class="counter-dot">·</span>
+
+            <div class="counter-item">
+                <span id="daysCount">0</span>
+                <small id="daysLabel">días</small>
+            </div>
+
+        </div>
+
+        <p class="final-future">
+            y todavía nos queda mucho por vivir.
+        </p>
+
+        <p class="final-love">
+            Te quiero, Alessandra.
+        </p>
+
+        <p class="final-signature">
+            — Alesandro
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- Música -->
+<audio id="backgroundMusic" loop>
+    <source
+        src="assets/music/nuestra-cancion.mp3"
+        type="audio/mpeg"
+    >
+</audio>
+
+<button id="musicButton" class="music-button hidden">
+    ♪
+</button>
+
+<script src="script.js"></script>
 
 </body>
 </html>

@@ -933,7 +933,17 @@ body {
 }
 
 .quiz-question {
-    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    max-width: 780px;
+
+    margin-bottom: 20px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+
+    font-weight: 500;
+    line-height: 1.18;
+
+    color: var(--cream);
 }
 
 .quiz-options {
@@ -942,9 +952,9 @@ body {
 
     width: min(440px, 90vw);
 
-    gap: 15px;
+    gap: 11px;
 
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 .quiz-option {
@@ -954,11 +964,11 @@ body {
 .quiz-feedback {
     min-height: 30px;
 
-    margin-top: 25px;
+    margin-top: 18px;
 
     font-family: "Cormorant Garamond", serif;
 
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 
     color: var(--cream);
 }
@@ -1050,6 +1060,8 @@ body {
 /* FOTO */
 
 .eyes-reveal {
+    width: min(440px, 84vw);
+
     margin-top: 70px;
 
     opacity: 0;
@@ -1066,22 +1078,24 @@ body {
 /* TEXTO FINAL */
 
 .eyes-final-text {
-    margin-top: 18px;
+    margin-top: 22px;
 
     font-family: "Great Vibes", cursive;
 
     font-size:
-        clamp(2.7rem, 5vw, 4rem);
+        clamp(2.9rem, 5vw, 4.2rem);
 
     color: var(--cream);
 
     opacity: 0;
 
-    transform: translateY(10px);
+    transform:
+        translateY(30px)
+        scale(0.96);
 
     transition:
-        opacity 1.2s ease 0.4s,
-        transform 1.2s ease 0.4s;
+        opacity 1.2s ease 3.6s,
+        transform 1.2s ease 3.6s;
 }
 
 
@@ -1293,4 +1307,685 @@ body {
     font-family: "Poppins", sans-serif;
 
     cursor: pointer;
+}
+/* =========================================
+   IMAGEN DEL RECUERDO
+========================================= */
+
+.quiz-image-wrapper {
+    width: min(390px, 80vw);
+
+    margin-bottom: 22px;
+    padding: 4px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(165, 42, 68, 0.75),
+            rgba(255, 255, 255, 0.04)
+        );
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.45);
+}
+
+.quiz-image {
+    display: block;
+
+    width: 100%;
+    max-height: 280px;
+
+    object-fit: contain;
+
+    border-radius: 16px;
+
+    background: #090708;
+}
+
+#questionPage {
+    justify-content: flex-start;
+
+    padding-top: 45px;
+    padding-bottom: 35px;
+}
+
+.next-question-button {
+    margin-top: 8px;
+
+    padding: 12px 28px;
+
+    border: 1px solid rgba(165, 42, 68, 0.5);
+    border-radius: 999px;
+
+    background: rgba(165, 42, 68, 0.12);
+
+    color: var(--cream);
+
+    font-family: "Poppins", sans-serif;
+
+    cursor: pointer;
+}
+
+/* =========================================
+   GALERÍA FINAL
+========================================= */
+
+.gallery-screen {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow-y: auto;
+
+    z-index: 90;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #211217 0%,
+            #120e10 50%,
+            #0d0b0c 100%
+        );
+}
+
+.gallery-page {
+    width: min(1100px, 92vw);
+
+    margin: 0 auto;
+
+    padding: 80px 20px 100px;
+
+    text-align: center;
+}
+
+.gallery-title {
+    margin-bottom: 18px;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(3.5rem, 7vw, 5.8rem);
+
+    font-weight: 400;
+
+    color: var(--cream);
+}
+
+.gallery-intro {
+    max-width: 650px;
+
+    margin: 0 auto 55px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+
+    line-height: 1.7;
+
+    color: #c5b7b9;
+}
+
+
+/* FOTOS */
+
+.photo-gallery {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+
+    align-items: start;
+}
+
+.gallery-photo {
+    padding: 5px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(165, 42, 68, 0.7),
+            rgba(255, 255, 255, 0.04)
+        );
+
+    box-shadow:
+        0 18px 50px
+        rgba(0, 0, 0, 0.4);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.gallery-photo:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 25px 65px
+        rgba(0, 0, 0, 0.55);
+}
+
+.gallery-photo img {
+    display: block;
+
+    width: 100%;
+    height: 380px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+}
+
+
+/* MENSAJE FINAL */
+
+.gallery-ending {
+    max-width: 700px;
+
+    margin: 90px auto 0;
+}
+
+.gallery-heart {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: var(--red);
+
+    font-size: 1.6rem;
+
+    animation: heartbeat 2s infinite;
+}
+
+.gallery-ending p {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+
+    line-height: 1.7;
+
+    color: #c5b7b9;
+}
+
+.gallery-ending h3 {
+    margin-top: 20px;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+
+    font-weight: 400;
+
+    color: var(--cream);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    .photo-gallery {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .gallery-photo img {
+        height: 320px;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .gallery-page {
+        width: 94vw;
+
+        padding:
+            65px 12px 80px;
+    }
+
+    .photo-gallery {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .gallery-photo img {
+        height: auto;
+
+        max-height: 520px;
+
+        object-fit: contain;
+
+        background: #090708;
+    }
+}
+
+.gallery-ending p {
+    margin-bottom: 18px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.7;
+
+    color: #c5b7b9;
+}
+
+/* =========================================
+   CARTA FINAL
+========================================= */
+
+.final-letter {
+    max-width: 780px;
+
+    margin: 120px auto 30px;
+    padding: 60px 45px;
+
+    border: 1px solid rgba(165, 42, 68, 0.22);
+    border-radius: 30px;
+
+    background:
+        rgba(20, 13, 15, 0.78);
+
+    box-shadow:
+        0 30px 90px
+        rgba(0, 0, 0, 0.45);
+
+    text-align: center;
+}
+
+.letter-content {
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.letter-content.accepted {
+    opacity: 0;
+
+    transform:
+        translateY(-15px)
+        scale(0.98);
+}
+
+.letter-title {
+    margin-bottom: 35px;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size:
+        clamp(3.2rem, 6vw, 5rem);
+
+    font-weight: 400;
+
+    color: var(--cream);
+}
+
+.letter-text {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(1.2rem, 2vw, 1.45rem);
+
+    line-height: 1.8;
+
+    color: #cbbec0;
+}
+
+.letter-text p {
+    margin-bottom: 22px;
+}
+
+.letter-thanks {
+    color: var(--cream);
+}
+
+.letter-question-intro {
+    margin-top: 45px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 1.25rem;
+
+    color: #a99699;
+}
+
+.letter-question {
+    max-width: 650px;
+
+    margin:
+        15px auto 30px;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        clamp(3rem, 5vw, 4.4rem);
+
+    font-weight: 400;
+
+    line-height: 1.15;
+
+    color: var(--cream);
+}
+
+.yes-button {
+    padding: 15px 34px;
+
+    border:
+        1px solid
+        rgba(165, 42, 68, 0.65);
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8e2038,
+            #5f1324
+        );
+
+    color: white;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0, 0, 0, 0.35);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.yes-button:hover {
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    box-shadow:
+        0 18px 45px
+        rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================
+   RESPUESTA FINAL
+========================================= */
+
+.final-answer {
+    padding:
+        35px 10px 20px;
+
+    opacity: 0;
+
+    transform:
+        translateY(25px)
+        scale(0.97);
+}
+
+.final-answer.show {
+    animation:
+        finalReveal 1.2s ease forwards;
+}
+
+@keyframes finalReveal {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.final-big-heart {
+    margin-bottom: 25px;
+
+    font-size: 3.3rem;
+
+    color: var(--red);
+
+    animation:
+        finalHeartbeat 1.4s ease 2;
+}
+
+@keyframes finalHeartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.22);
+    }
+
+    55% {
+        transform: scale(0.95);
+    }
+
+    75% {
+        transform: scale(1.12);
+    }
+}
+
+.final-answer h2 {
+    max-width: 650px;
+
+    margin:
+        0 auto 45px;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        clamp(3.1rem, 6vw, 5rem);
+
+    font-weight: 400;
+
+    line-height: 1.1;
+
+    color: var(--cream);
+}
+
+
+/* CONTADOR */
+
+.relationship-counter {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+
+    margin:
+        30px auto 40px;
+
+    flex-wrap: wrap;
+}
+
+.counter-item {
+    min-width: 90px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.counter-item span {
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1;
+
+    color: var(--cream);
+}
+
+.counter-item small {
+    margin-top: 8px;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: #9f888c;
+}
+
+.counter-dot {
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 2rem;
+
+    color: var(--red);
+}
+
+.final-future {
+    margin-top: 20px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(1.3rem, 2vw, 1.55rem);
+
+    color: #c5b7b9;
+}
+
+.final-love {
+    margin-top: 45px;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        clamp(3.4rem, 6vw, 5rem);
+
+    color: var(--cream);
+}
+
+.final-signature {
+    margin-top: 10px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 1.1rem;
+
+    color: #9f888c;
+}
+
+
+/* =========================================
+   CORAZONES AL PRESIONAR "SÍ"
+========================================= */
+
+.final-heart-burst {
+    position: fixed;
+
+    left: var(--start-x);
+    top: var(--start-y);
+
+    z-index: 300;
+
+    pointer-events: none;
+
+    color: #b52e4c;
+
+    font-size: var(--heart-size);
+
+    opacity: 0;
+
+    animation:
+        heartBurst 1.8s ease-out forwards;
+}
+
+@keyframes heartBurst {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.3);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(
+                calc(-50% + var(--move-x)),
+                calc(-50% + var(--move-y))
+            )
+            rotate(var(--rotation))
+            scale(1.2);
+    }
+}
+
+
+/* MÓVIL */
+
+@media (max-width: 600px) {
+
+    .final-letter {
+        margin-top: 80px;
+
+        padding:
+            45px 22px;
+
+        border-radius: 24px;
+    }
+
+    .relationship-counter {
+        gap: 12px;
+    }
+
+    .counter-item {
+        min-width: 70px;
+    }
+
+    .counter-dot {
+        font-size: 1.5rem;
+    }
 }
