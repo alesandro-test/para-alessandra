@@ -123,7 +123,83 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 15000);
 
     }
+    
+    /* -----------------------------
+    IR AL MINIJUEGO
+    ----------------------------- */
 
+    const memoriesButton =
+        document.getElementById("memoriesButton");
+
+    const quizIntroSection =
+        document.getElementById("quizIntroSection");
+
+    const startQuizButton =
+        document.getElementById("startQuizButton");
+
+    const quizSection =
+        document.getElementById("quizSection");
+
+
+    if (memoriesButton && quizIntroSection) {
+
+        memoriesButton.addEventListener("click", () => {
+
+            quizIntroSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        });
+
+    }
+
+
+    if (startQuizButton && quizSection) {
+
+        startQuizButton.addEventListener("click", () => {
+
+            quizSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        });
+
+    }
+
+
+        /* -----------------------------
+    ANIMACIÓN DEL HILO ROJO
+    ----------------------------- */
+
+    const threadEnding =
+        document.querySelector(".thread-ending");
+
+    if (threadEnding) {
+
+        const threadObserver =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            threadEnding.classList.add("active");
+
+                            threadObserver.unobserve(threadEnding);
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.45
+                }
+            );
+
+        threadObserver.observe(threadEnding);
+
+    }
     setInterval(createHeart, 900);
 
 });
