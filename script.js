@@ -394,16 +394,24 @@ const questions = [
         question:
             "¿Cuándo hicimos nuestro carnet para la licencia de lobos domesticados? 🐺",
 
-        options: [
-            "30 · 03 · 2026",
-            "30 · 04 · 2026",
-            "30 · 05 · 2026"
+        correctAnswer:
+            "30 de abril de 2026",
+
+        wrongOptions: [
+            "18 de agosto de 2024",
+            "12 de noviembre de 2025",
+            "8 de enero de 2026",
+            "21 de junio de 2026",
+            "17 de septiembre de 2025",
+            "9 de marzo de 2026",
+            "24 de diciembre de 2025"
         ],
 
-        correct: 1,
+        // Posición 2
+        correctPosition: 1,
 
         hint:
-            "Pista: fue a finales de abril 👀",
+            "Pista: para ese momento ya teníamos varias locuras juntos 🐺👀",
 
         success:
             "30 de abril de 2026 🐺❤️"
@@ -418,16 +426,24 @@ const questions = [
         question:
             "¿En qué mes hice este dibujo para ti? 🎨",
 
-        options: [
-            "Enero de 2026",
+        correctAnswer:
             "Febrero de 2026",
+
+        wrongOptions: [
+            "Agosto de 2024",
+            "Octubre de 2025",
+            "Diciembre de 2025",
+            "Enero de 2026",
+            "Abril de 2026",
+            "Julio de 2025",
             "Marzo de 2026"
         ],
 
-        correct: 1,
+        // Posición 4
+        correctPosition: 3,
 
         hint:
-            "Pista: fue casi terminando el segundo mes del año ❤️",
+            "Pista: fue en uno de los meses más cortitos del año 🎨❤️",
 
         success:
             "27 de febrero de 2026 ❤️"
@@ -442,27 +458,65 @@ const questions = [
         question:
             "¿Cuándo nos tomamos aquella foto juntos en GTA? 🎮",
 
-        options: [
-            "04 · 10 · 2025",
-            "14 · 10 · 2025",
-            "04 · 11 · 2025"
+        correctAnswer:
+            "4 de octubre de 2025",
+
+        wrongOptions: [
+            "16 de julio de 2024",
+            "22 de septiembre de 2025",
+            "11 de diciembre de 2025",
+            "7 de enero de 2026",
+            "19 de noviembre de 2025",
+            "14 de marzo de 2026",
+            "28 de agosto de 2025"
         ],
 
-        correct: 0,
+        // Posición 5
+        correctPosition: 4,
 
         hint:
-            "Pista: fue un día 4 👀",
+            "Pista: fue durante nuestros primeros meses juntos 👀",
 
         success:
             "4 de octubre de 2025 🎮❤️"
     }
 ];
 
+
 let currentQuestion = 0;
 let attempts = 0;
 
 
-/* MOSTRAR PREGUNTA */
+/* -----------------------------
+   MEZCLAR OPCIONES
+----------------------------- */
+
+function shuffleArray(array) {
+
+    const copy = [...array];
+
+    for (
+        let i = copy.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [copy[i], copy[j]] =
+            [copy[j], copy[i]];
+    }
+
+    return copy;
+}
+
+
+/* -----------------------------
+   MOSTRAR PREGUNTA
+----------------------------- */
 
 function renderQuestion() {
 
@@ -470,6 +524,7 @@ function renderQuestion() {
 
     const question =
         questions[currentQuestion];
+
 
     questionNumber.textContent =
         question.title;
@@ -485,15 +540,84 @@ function renderQuestion() {
 
     quizFeedback.textContent = "";
 
-    nextQuestionButton.classList.add("hidden");
+    nextQuestionButton.classList.add(
+        "hidden"
+    );
 
     quizOptions.innerHTML = "";
 
 
-    question.options.forEach((option, index) => {
+    /*
+       La respuesta de 2024
+       aparece siempre.
+    */
+
+    const option2024 =
+        question.wrongOptions.find(
+            option =>
+                option.includes("2024")
+        );
+
+
+    /*
+       El resto de respuestas
+       incorrectas se eligen al azar.
+    */
+
+    const otherWrongOptions =
+        question.wrongOptions.filter(
+            option =>
+                !option.includes("2024")
+        );
+
+
+    const randomWrongOptions =
+        shuffleArray(
+            otherWrongOptions
+        ).slice(0, 3);
+
+
+    /*
+       Tenemos cuatro incorrectas:
+       1 de 2024 + 3 aleatorias.
+    */
+
+    let options = [
+        option2024,
+        ...randomWrongOptions
+    ];
+
+
+    /*
+       Mezclamos primero las incorrectas.
+    */
+
+    options =
+        shuffleArray(options);
+
+
+    /*
+       Después colocamos la correcta
+       en la posición fija correspondiente.
+    */
+
+    options.splice(
+        question.correctPosition,
+        0,
+        question.correctAnswer
+    );
+
+
+    /*
+       Crear los cinco botones.
+    */
+
+    options.forEach(option => {
 
         const button =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
         button.type = "button";
 
@@ -503,99 +627,188 @@ function renderQuestion() {
         button.textContent =
             option;
 
+
         button.addEventListener(
             "click",
-            () => checkAnswer(button, index)
+            () => {
+
+                checkAnswer(
+                    button,
+                    option
+                );
+
+            }
         );
 
-        quizOptions.appendChild(button);
 
+        quizOptions.appendChild(
+            button
+        );
     });
-
 }
 
 
-/* COMPROBAR RESPUESTA */
+/* -----------------------------
+   COMPROBAR RESPUESTA
+----------------------------- */
 
-function checkAnswer(button, selectedIndex) {
+function checkAnswer(
+    button,
+    selectedAnswer
+) {
 
     const question =
         questions[currentQuestion];
 
-    attempts++;
 
+    /*
+       RESPUESTA CORRECTA
+    */
 
-    if (selectedIndex === question.correct) {
+    if (
+        selectedAnswer ===
+        question.correctAnswer
+    ) {
 
-        button.classList.add("correct");
+        button.classList.add(
+            "correct"
+        );
 
         quizFeedback.textContent =
             question.success;
 
+
         document
-            .querySelectorAll(".quiz-option")
+            .querySelectorAll(
+                ".quiz-option"
+            )
             .forEach(option => {
+
                 option.disabled = true;
+
             });
 
-        nextQuestionButton.classList.remove("hidden");
+
+        nextQuestionButton
+            .classList.remove(
+                "hidden"
+            );
 
         return;
     }
 
 
-    button.classList.add("wrong");
+    /*
+       RESPUESTA ESPECIAL DE 2024
+    */
+
+    if (
+        selectedAnswer.includes(
+            "2024"
+        )
+    ) {
+
+        button.classList.add(
+            "wrong"
+        );
+
+        quizFeedback.textContent =
+            "Amor... en 2024 todavía ni nos conocíamos 😭❤️";
+
+
+        setTimeout(() => {
+
+            button.classList.remove(
+                "wrong"
+            );
+
+        }, 900);
+
+        return;
+    }
+
+
+    /*
+       OTRA RESPUESTA INCORRECTA
+    */
+
+    attempts++;
+
+    button.classList.add(
+        "wrong"
+    );
 
 
     if (attempts === 1) {
 
         quizFeedback.textContent =
-            "¿Segura? 👀 Inténtalo otra vez.";
+            "Mmm... piénsalo otra vez 👀❤️";
 
     } else {
 
         quizFeedback.textContent =
             question.hint;
-
     }
 
 
     setTimeout(() => {
 
-        button.classList.remove("wrong");
+        button.classList.remove(
+            "wrong"
+        );
 
     }, 700);
-
 }
 
 
-/* SIGUIENTE PREGUNTA */
+/* -----------------------------
+   SIGUIENTE PREGUNTA
+----------------------------- */
 
-nextQuestionButton.addEventListener("click", () => {
+nextQuestionButton.addEventListener(
+    "click",
+    () => {
 
-    currentQuestion++;
+        currentQuestion++;
 
-    if (currentQuestion < questions.length) {
 
-        renderQuestion();
+        if (
+            currentQuestion <
+            questions.length
+        ) {
 
-    } else {
+            renderQuestion();
 
-        questionPage.classList.add("leaving");
+        } else {
 
-        setTimeout(() => {
+            questionPage.classList.add(
+                "leaving"
+            );
 
-            quizScreen.classList.add("hidden");
 
-            galleryScreen.classList.remove("hidden");
-            galleryScreen.classList.add("entering");
+            setTimeout(() => {
 
-            window.scrollTo(0, 0);
+                quizScreen.classList.add(
+                    "hidden"
+                );
 
-        }, 700);
+                galleryScreen.classList.remove(
+                    "hidden"
+                );
 
+                galleryScreen.classList.add(
+                    "entering"
+                );
+
+                window.scrollTo(
+                    0,
+                    0
+                );
+
+            }, 700);
+        }
     }
-});
+);
 
 /* -----------------------------
     ANIMACIÓN DEL HILO ROJO

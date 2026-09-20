@@ -2159,38 +2159,6 @@ body {
     }
 }
 
-.cover-flower {
-    position: absolute;
-
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(5rem, 10vw, 9rem);
-
-    color: rgba(165, 42, 68, 0.09);
-
-    pointer-events: none;
-
-    filter:
-        blur(0.2px)
-        drop-shadow(
-            0 0 20px
-            rgba(165, 42, 68, 0.08)
-        );
-}
-
-.flower-left {
-    left: 3%;
-    bottom: 8%;
-
-    transform: rotate(-25deg);
-}
-
-.flower-right {
-    right: 3%;
-    top: 22%;
-
-    transform:
-        rotate(155deg);
-}
 
 @keyframes photoGlow {
 
@@ -2210,41 +2178,6 @@ body {
             0 0 42px
             rgba(165, 42, 68, 0.18);
     }
-}
-
-.big-romantic-decor {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 180;
-    overflow: hidden;
-}
-
-.big-decor {
-    position: absolute;
-
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(6rem, 9vw, 10rem);
-
-    color: rgba(165, 42, 68, 0.065);
-
-    filter:
-        drop-shadow(
-            0 0 25px
-            rgba(165, 42, 68, 0.08)
-        );
-
-    animation: decorFloat 12s ease-in-out infinite;
-}
-
-
-/* ARRIBA IZQUIERDA */
-.decor-top-left {
-    top: 12%;
-    left: -1%;
-    transform: rotate(-28deg);
 }
 
 
@@ -2292,13 +2225,32 @@ body {
     }
 }
 
+
+@keyframes decorFloat {
+
+    0%,
+    100% {
+        translate: 0 0;
+        opacity: 0.7;
+    }
+
+    50% {
+        translate: 0 -14px;
+        opacity: 1;
+    }
+}
+
 .big-romantic-decor {
     position: fixed;
     inset: 0;
+
     width: 100%;
     height: 100%;
+
     pointer-events: none;
+
     z-index: 180;
+
     overflow: hidden;
 }
 
@@ -2306,9 +2258,12 @@ body {
     position: absolute;
 
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(6rem, 9vw, 10rem);
 
-    color: rgba(165, 42, 68, 0.065);
+    font-size:
+        clamp(6rem, 9vw, 10rem);
+
+    color:
+        rgba(165, 42, 68, 0.065);
 
     filter:
         drop-shadow(
@@ -2316,43 +2271,57 @@ body {
             rgba(165, 42, 68, 0.08)
         );
 
-    animation: decorFloat 12s ease-in-out infinite;
+    animation:
+        decorFloat 12s
+        ease-in-out infinite;
 }
 
 
 /* ARRIBA IZQUIERDA */
+
 .decor-top-left {
     top: 12%;
     left: -1%;
-    transform: rotate(-28deg);
+
+    transform:
+        rotate(-28deg);
 }
 
 
 /* ARRIBA DERECHA */
+
 .decor-top-right {
     top: 27%;
     right: 3%;
-    transform: rotate(145deg);
+
+    transform:
+        rotate(145deg);
 
     animation-delay: -3s;
 }
 
 
 /* ABAJO IZQUIERDA */
+
 .decor-bottom-left {
     bottom: 9%;
     left: 2%;
-    transform: rotate(18deg);
+
+    transform:
+        rotate(18deg);
 
     animation-delay: -6s;
 }
 
 
 /* ABAJO DERECHA */
+
 .decor-bottom-right {
     bottom: 3%;
     right: 7%;
-    transform: rotate(-145deg);
+
+    transform:
+        rotate(-145deg);
 
     animation-delay: -9s;
 }
