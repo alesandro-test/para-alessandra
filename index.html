@@ -122,14 +122,20 @@
         <div class="red-thread-path">
             <svg
                 class="red-thread-svg"
-                viewBox="0 0 100 180"
+                viewBox="0 0 100 650"
                 preserveAspectRatio="none"
             >
                 <path
                     class="red-thread-draw"
-                    d="M50 0
-                    C25 35, 75 55, 45 90
-                    C20 120, 75 145, 50 180"
+                    pathLength="1"
+                    d="
+                        M50 0
+                        C15 55, 85 95, 45 145
+                        C10 195, 90 245, 50 300
+                        C15 355, 85 395, 45 450
+                        C10 505, 90 550, 50 600
+                        C35 620, 65 640, 50 650
+                    "
                 />
             </svg>
         </div>
@@ -145,17 +151,8 @@
         <p class="eyes-final-text">
             tus ojos hermosos.
         </p>
-
-    </div>
-
-        <div class="thread-photo-wrapper">
-            <img
-                src="assets/images/portada/ella.jpg"
-                alt="Alessandra"
-                class="thread-photo"
-            >
-        </div>
-
+        
+<!-- BOTÓN PARA ENTRAR AL MINIJUEGO -->
         <button class="memories-button" id="memoriesButton">
             Sigamos con nuestros recuerdos
             <span>♥</span>
@@ -163,59 +160,84 @@
 
     </section>
 
-    <section class="quiz-intro-section" id="quizIntroSection">
+</main>
 
-    <p class="section-small-title">
-        Nuestros recuerdos
-    </p>
 
-    <h2 class="quiz-intro-title">
-        Ahora viene una pequeña prueba...
-    </h2>
+<!-- ======================================
+     PANTALLA DEL MINIJUEGO
+======================================= -->
 
-    <p class="quiz-intro-text">
-        Hemos vivido muchos momentos juntos.
-        Veamos cuánto recuerdas de nosotros. ❤️
-    </p>
+<main id="quizScreen" class="quiz-screen hidden">
 
-    <button class="start-quiz-button" id="startQuizButton">
-        Comenzar
-        <span>♥</span>
-    </button>
+    <!-- INTRO DEL JUEGO -->
+    <section id="quizIntro" class="quiz-page">
 
-    <section class="quiz-section" id="quizSection">
+        <p class="section-small-title">
+            Nuestros recuerdos
+        </p>
 
-        <p class="quiz-number">
+        <h2 class="quiz-main-title">
+            Ahora viene una pequeña prueba...
+        </h2>
+
+        <p class="quiz-intro-text">
+            Hemos vivido muchos momentos juntos.
+            Veamos cuánto recuerdas de nosotros. ❤️
+        </p>
+
+        <button
+            id="startQuizButton"
+            class="start-quiz-button"
+        >
+            Comenzar
+            <span>♥</span>
+        </button>
+
+    </section>
+
+
+    <!-- PREGUNTAS -->
+    <section
+        id="questionPage"
+        class="quiz-page hidden"
+    >
+
+        <p
+            id="questionNumber"
+            class="quiz-number"
+        >
             Recuerdo 01
         </p>
 
-        <h2 class="quiz-question">
-            ¿Cuándo hicimos nuestro carnet para la licencia
-            de lobos domesticados? 🐺
+        <h2
+            id="questionText"
+            class="quiz-question"
+        >
+            Pregunta
         </h2>
 
-        <div class="quiz-options">
-
-            <button class="quiz-option">
-                OPCIÓN 1
-            </button>
-
-            <button class="quiz-option">
-                OPCIÓN 2
-            </button>
-
-            <button class="quiz-option">
-                OPCIÓN 3
-            </button>
-
+        <div
+            id="quizOptions"
+            class="quiz-options"
+        >
         </div>
 
-        <p class="quiz-feedback" id="quizFeedback"></p>
+        <p
+            id="quizFeedback"
+            class="quiz-feedback"
+            aria-live="polite"
+        ></p>
+
+        <button
+            id="nextQuestionButton"
+            class="next-question-button hidden"
+        >
+            Continuar ♥
+        </button>
 
     </section>
 
 </main>
-
 
     <!-- Música -->
     <audio id="backgroundMusic" loop>

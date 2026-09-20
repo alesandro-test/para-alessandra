@@ -124,48 +124,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
     
-    /* -----------------------------
-    IR AL MINIJUEGO
-    ----------------------------- */
+/* -----------------------------
+   PANTALLA DEL MINIJUEGO
+----------------------------- */
 
-    const memoriesButton =
-        document.getElementById("memoriesButton");
+const memoriesButton =
+    document.getElementById("memoriesButton");
 
-    const quizIntroSection =
-        document.getElementById("quizIntroSection");
+const quizScreen =
+    document.getElementById("quizScreen");
 
-    const startQuizButton =
-        document.getElementById("startQuizButton");
+const quizIntro =
+    document.getElementById("quizIntro");
 
-    const quizSection =
-        document.getElementById("quizSection");
+const startQuizButton =
+    document.getElementById("startQuizButton");
 
-
-    if (memoriesButton && quizIntroSection) {
-
-        memoriesButton.addEventListener("click", () => {
-
-            quizIntroSection.scrollIntoView({
-                behavior: "smooth"
-            });
-
-        });
-
-    }
+const questionPage =
+    document.getElementById("questionPage");
 
 
-    if (startQuizButton && quizSection) {
+/* ABRIR PANTALLA DEL QUIZ */
 
-        startQuizButton.addEventListener("click", () => {
+if (memoriesButton && quizScreen) {
 
-            quizSection.scrollIntoView({
-                behavior: "smooth"
-            });
+    memoriesButton.addEventListener("click", () => {
 
-        });
+        /* desvanece la carta */
+        giftContent.classList.add("leaving");
 
-    }
+        setTimeout(() => {
 
+            giftContent.classList.add("hidden");
+
+            window.scrollTo(0, 0);
+
+            quizScreen.classList.remove("hidden");
+            quizScreen.classList.add("entering");
+
+        }, 800);
+
+    });
+
+}
+
+
+/* COMENZAR EL QUIZ */
+
+if (startQuizButton && quizIntro && questionPage) {
+
+    startQuizButton.addEventListener("click", () => {
+
+        quizIntro.classList.add("leaving");
+
+        setTimeout(() => {
+
+            quizIntro.classList.add("hidden");
+
+            questionPage.classList.remove("hidden");
+            questionPage.classList.add("entering");
+
+        }, 650);
+
+    });
+
+}
 
         /* -----------------------------
     ANIMACIÓN DEL HILO ROJO
