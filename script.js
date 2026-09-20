@@ -74,14 +74,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function playCurrentTrack() {
 
-        backgroundMusic
-            .play()
-            .then(() => {
-                updatePlayButton();
-            })
-            .catch(() => {
-                console.log("El navegador bloqueó la reproducción.");
-            });
+        const playPromise =
+            backgroundMusic.play();
+
+        if (playPromise !== undefined) {
+
+            playPromise
+                .then(() => {
+
+                    updatePlayButton();
+
+                })
+                .catch(error => {
+
+                    console.error(
+                        "No se pudo reproducir:",
+                        error
+                    );
+
+                    playPauseButton.textContent = "▶";
+
+                });
+
+        }
 
     }
 
@@ -184,10 +199,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     backgroundMusic.addEventListener(
-        "ended",
-        nextTrack
-    );
+        "error",
+        () => {
 
+            console.error(
+                "Error cargando:",
+                backgroundMusic.src,
+                backgroundMusic.error
+            );
+
+        }
+    );
     /* -----------------------------
        BOTÓN CONTINUAR
     ----------------------------- */
